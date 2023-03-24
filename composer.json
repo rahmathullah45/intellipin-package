@@ -1,0 +1,19 @@
+{
+    "name": "rahmat/intellipin",
+    "description": "This will generate random pin.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rahmat\\Intellipin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rahmathullah A",
+            "email": "rahmathullah945@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
