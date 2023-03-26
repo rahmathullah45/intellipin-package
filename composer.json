@@ -15,5 +15,15 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rahmat\\Intellipin\\IntellipinServiceProvider"
+            ],
+            "aliases": {
+                "RandomPin": "Rahmat\\Intellipin\\RandomPin"
+            }
+        }
+    }
 }
