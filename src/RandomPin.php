@@ -59,6 +59,7 @@ class RandomPin{
         return $number;
     }
 
+    //tested method
     /*public static function generateRandomNumber($length = 4) {
         $digits = range(1, 9);
            shuffle($digits);
