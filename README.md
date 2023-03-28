@@ -22,6 +22,10 @@ After the migration, the below new table will be present:
 ## Usage
 
 ```php
+use Rahmat\Intellipin;
+
+
+
 RandomPin::generate();
 
 RandomPin::generate(6); //with length
