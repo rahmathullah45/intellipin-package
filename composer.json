@@ -25,5 +25,10 @@
                 "RandomPin": "Rahmat\\Intellipin\\RandomPin"
             }
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rahmat\\Intellipin\\Tests": "tests/"
+        }
     }
 }

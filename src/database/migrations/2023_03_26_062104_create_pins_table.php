@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('pin');
             $table->boolean('status')->default(1);
+            $table->unique('pin');
             $table->timestamps();
         });
     }

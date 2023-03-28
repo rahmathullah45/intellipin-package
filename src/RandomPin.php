@@ -7,13 +7,22 @@ use Rahmat\Intellipin\Models\Pin;
 
 class RandomPin{
 
-    public static function generate(){
-        $random_pin = self::generateRandomNumber();
+    private static $length = 4;
+
+    public static function generate($length=4){
+        if($length<4){
+            return response()->json(['error' => "Minimum pin character length is 4"]);
+        }
+        if($length>12){
+            return response()->json(['error' => "Maximum pin character length is 12"]);
+        }
+        self::$length = $length;
+        $random_pin = self::generateRandomNumber(self::$length);
         $random_pin = intval($random_pin);
         $pin = self::pinValidate($random_pin);
         $utilised = Pin::where('pin',$random_pin)->first();
         if($utilised){
-            self::generate();
+            self::generate(self::$length);
         }
         else{
             Pin::create(['pin'=>$random_pin]);
@@ -24,7 +33,7 @@ class RandomPin{
     private static function pinValidate($random_pin){
         $validated_pin = self::palindromeCheck($random_pin);
         if($random_pin==$validated_pin){
-            self::generate();
+            self::generate(self::$length);
         }
         else{
             return $random_pin;
@@ -44,7 +53,7 @@ class RandomPin{
         return $sum;  
     }
     
-    public static function generateRandomNumber($length = 4) {
+    public static function generateRandomNumber($length) {
         $number = '';
         $prev = '';
     
@@ -58,24 +67,4 @@ class RandomPin{
     
         return $number;
     }
-
-    //tested method
-    /*public static function generateRandomNumber($length = 4) {
-        $digits = range(1, 9);
-           shuffle($digits);
-           $pin = '';
-           while (strlen($pin) < $length) {
-               // Get a random digit from the shuffled array
-               $digit = array_pop($digits);
-               // Check if the digit would create a sequence with the last digit in the pin
-               if (strlen($pin) > 0 && ($digit == $pin[strlen($pin) - 1] - 1 || $digit == $pin[strlen($pin) - 1] + 1)) {
-                   // Skip this digit and shuffle the array again
-                   shuffle($digits);
-               } elseif (strlen($pin) == 0 || !in_array($digit, str_split($pin))) {
-                   // Add the digit to the pin if it is not already in the pin
-                   $pin .= $digit;
-               }
-           }
-           return $pin;
-    }*/
 }
